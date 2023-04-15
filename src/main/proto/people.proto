@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "PeopleProto";
+
+package krivokapic.djordjije;
+
+
+service PeopleService {
+  rpc GetPeople(SearchPeopleRequest) returns (stream Person) {}
+
+  rpc CreatePerson(CreatePersonRequest) returns (Person) {}
+}
+
+message SearchPeopleRequest {
+  string search_string = 1;
+}
+
+message CreatePersonRequest {
+  Person person = 1;
+}
+
+message Person {
+  string uuid = 1;
+  string name = 2;
+  uint32 age = 3;
+  Gender gender = 4;
+}
+
+enum Gender {
+  GENDER_UNDEFINED = 0;
+  FEMALE = 1;
+  MALE = 2;
+}

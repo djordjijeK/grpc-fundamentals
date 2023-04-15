@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "ChatProto";
+
+package krivokapic.djordjije;
+
+
+service ChatService {
+  rpc JoinChat(JoinRequest) returns (JoinResponse) {}
+
+  rpc SendMessage(stream MessageRequest) returns (stream MessageResponse) {}
+}
+
+
+message JoinRequest {
+  string username = 1;
+}
+
+
+message JoinResponse {
+  repeated string username = 1;
+}
+
+
+message MessageRequest {
+  string username = 1;
+  string message = 2;
+}
+
+
+message MessageResponse {
+  string username = 1;
+  string message = 2;
+}
